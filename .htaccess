@@ -1,0 +1,61 @@
+RewriteEngine On
+
+RewriteRule ^contact/?$ /contact.php [L]
+RewriteRule ^leda/?$ /leda.php [L]
+RewriteRule ^ortholove/homefoam/?$ /homefoam.php [L]
+RewriteRule ^ortholove/professional-series/?$ /professional-series.php [L]
+RewriteRule ^about-us/?$ /about-us.php [L]
+RewriteRule ^starr-frame/?$ /starr-frame.php [L]
+RewriteRule ^groupe-lepine/inca-stt-resurfacing/?$ /inca-stt-resurfacing.php [L]
+RewriteRule ^groupe-lepine/memofix-soft-tissue-anchors/?$ /memofix-soft-tissue-anchors.php [L]
+RewriteRule ^skeletal-dynamics/dsp-dorsal-spanning-plate/?$ /dsp-dorsal-spanning-plate.php [L]
+RewriteRule ^skeletal-dynamics/protean-coronoid-radial-head-plates/?$ /protean-coronoid-radial-head-plates.php [L]
+RewriteRule ^skeletal-dynamics-elbow-and-shoulder/pup-proximal-ulna-plate/?$ /pup-proximal-ulna-plate.php [L]
+RewriteRule ^medenvision/?$ /medenvision.php [L]
+RewriteRule ^medenvision/esysuit/?$ /esysuit.php [L]
+RewriteRule ^medenvision/the-gripper/?$ /the-gripper.php [L]
+RewriteRule ^toby-orthopaedics/?$ /toby-orthopaedics.php [L]
+RewriteRule ^leda/bespoke-instrumentation/?$ /bespoke-instrumentation.php [L]
+RewriteRule ^leda/arthroprep-chisel-set/?$ /arthroprep-chisel-set.php [L]
+RewriteRule ^checkpoint-nerve-stimulator/?$ /checkpoint-nerve-stimulator.php [L]
+RewriteRule ^jake-design/exo-elbow-splint/?$ /exo-elbow-splint.php [L]
+RewriteRule ^l3d-lifeprints/l3d-osteotomy-planning/?$ /l3d-osteotomy-planning.php [L]
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+
+# BEGIN Images to WebP
+<IfModule mod_mime.c>
+AddType image/webp .webp
+</IfModule>
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_ACCEPT} image/webp
+RewriteCond %{REQUEST_FILENAME} "/"
+RewriteCond %{REQUEST_FILENAME} "\.(jpg|jpeg|png)$"
+RewriteCond %{REQUEST_FILENAME}\.webp -f
+RewriteCond %{QUERY_STRING} !no_webp
+RewriteRule ^(.+)$ $1\.webp [NC,T=image/webp,E=webp,L]
+</IfModule>
+# END Images to WebP
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php83” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
